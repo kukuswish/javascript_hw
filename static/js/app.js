@@ -1,6 +1,7 @@
 // from data.js
 var tableData = data;
 var infoTable = d3.select("#ufo-table tbody");
+var subSelect = d3.select("#subFilter");
 // YOUR CODE HERE!
 
 function onlyUnique(value, index, self) { 
@@ -63,6 +64,15 @@ function showFilter(){
 		d3.select("#shapeFilSel").append('option').attr('value',a).text(a);
 	});
 }
+
+subSelect.on("change", function(){
+
+	d3.selectAll('.subFilSel').property('value', 'all');
+	d3.selectAll(".subFils .subfil").classed('hide', true);
+	if(this.value != 'all'){
+		d3.select("#"+this.value+'Fil').classed('hide',false);
+	}
+});
 
 filteredOutput();
 showFilter();
