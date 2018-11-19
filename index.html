@@ -34,15 +34,50 @@
               <div class="panel-body">
                 <form>
                   <div class="form-group">
-                    <ul class="list-group" id="filters">
-                      <li class="filter list-group-item">
-                        <label for="date">Enter a Date</label>
-                        <input class="form-control" id="datetime" type="text" placeholder="1/11/2011">
-                      </li>
-                    </ul>
+                    <label>Date</label>
+                    <select id='dtFilter' class="form-control">
+                      <option value="all">All</option>
+                    </select>
                   </div>
-                  <button id="filter-btn" type="submit" class="btn btn-default">Filter Table</button>
                 </form>
+                <label>Filter By : </label>
+                <div class="filterList">
+                  <div class="subFilter" id="cityFilter">
+                    <select  class="subSelect form-control" id="subFilter">
+                      <option value="all">All</option>
+                      <option value="city">City</option>
+                      <option value="state">State</option>
+                      <option value="country">Country</option>
+                      <option value="shape">Shape</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="filterList subFils">
+                  <div class="subfil" id="cityFil">
+                    <label>City</label>
+                    <select class="subFilSel" id="cityFilSel">
+                      <option value="all">All</option>
+                    </select>
+                  </div>
+                  <div class="subfil" id="stateFil">
+                    <label>State</label>
+                    <select class="subFilSel" id="stateFilSel">
+                      <option value="all">All</option>
+                    </select>
+                  </div>
+                  <div class="subfil" id="countryFil">
+                    <label>Country</label>
+                    <select class="subFilSel" id="countryFilSel">
+                      <option value="all">All</option>
+                    </select>
+                  </div>
+                  <div class="subfil" id="shapeFil">
+                    <label>Shape</label>
+                    <select class="subFilSel" id="shapeFilSel">
+                      <option value="all">All</option>
+                    </select>
+                  </div>
+                </div>
               </div>
             </div>
           </aside>
