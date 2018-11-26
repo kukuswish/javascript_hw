@@ -2,6 +2,8 @@
 var tableData = data;
 var infoTable = d3.select("#ufo-table tbody");
 var subSelect = d3.select("#subFilter");
+var subFils= d3.selectAll('.subFilSel');
+var dtFilter = d3.select("#dtFilter");
 // YOUR CODE HERE!
 
 function onlyUnique(value, index, self) { 
@@ -36,7 +38,7 @@ function filteredOutput(filBy=''){
 	console.log(filBy);
 }
 
-function showFilter(){
+function init(){
 	console.log(tableData);
 	var dateL = tableData.map( a => a.datetime).filter(onlyUnique);
 	var cityL = tableData.map( a => a.city ).filter(onlyUnique);
@@ -64,6 +66,36 @@ function showFilter(){
 		d3.select("#shapeFilSel").append('option').attr('value',a).text(a);
 	});
 }
+function showAll(){
+	infoTable.selectAll('tr').classed('hide',false);
+}
+
+function hideRows(){
+	var dtVal = dtFilter.node().value;
+	var subSelVal = subSelect.node().value;
+	
+	if(dtVal == 'all' && subSelVal == 'all'){
+		showAll();
+	}else{
+		if(subSelVal == 'all'){
+			var subFilVal = 'all';
+		}else if( subSelVal == 'city' ){
+			var subFilVal = d3.select("#"+subSelVal+"FilSel").node().value;
+		}else if( subSelVal == 'state'){
+			var subFilVal = d3.select("#"+subSelVal+"FilSel").node().value;
+		}else if( subSelVal == 'country'){
+			var subFilVal = d3.select("#"+subSelVal+"FilSel").node().value;
+		}else if( subSelVal == 'shape'){
+			var subFilVal = d3.select("#"+subSelVal+"FilSel").node().value;
+		}
+		console.log(subFilVal);
+	}
+	
+}
+
+dtFilter.on("change", function(){
+	hideRows();
+});
 
 subSelect.on("change", function(){
 
@@ -72,8 +104,13 @@ subSelect.on("change", function(){
 	if(this.value != 'all'){
 		d3.select("#"+this.value+'Fil').classed('hide',false);
 	}
+	hideRows();
+});
+
+subFils.on("change", function(){
+	hideRows();
 });
 
 filteredOutput();
-showFilter();
+init();
 
