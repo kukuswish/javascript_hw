@@ -71,11 +71,19 @@ function showAll(){
 }
 
 function filterShow(subBy='all',subfil='all',dtfil='all'){
+	console.log(dtfil);
 	infoTable.selectAll('tr').classed('hide',true);
 	infoTable.selectAll('tr').each(function(a,b){
-	var elem = d3.select(this);
-		if( elem.attr('data-'+subBy) == subfil ){
-			elem.classed('hide',false);
+		var elem = d3.select(this);
+
+		if(dtfil=='all'){
+			if( elem.attr('data-'+subBy) == subfil ){
+				elem.classed('hide',false);
+			}
+		}else{
+			if( (elem.attr('data-'+subBy) == subfil) && (elem.attr('data-dt')== dtfil) ) {
+				elem.classed('hide',false);
+			}
 		}
 	});
 }
@@ -91,33 +99,32 @@ function hideRows(){
 		}else if( subSelVal == 'city' ){
 			var subFilVal = d3.select("#"+subSelVal+"FilSel").node().value;
 			if(subFilVal != 'all'){
-				filterShow('city',subFilVal);
+				filterShow('city',subFilVal, dtVal);
 			}else{
 				infoTable.selectAll('tr').classed('hide',false);
 			}
 		}else if( subSelVal == 'state'){
 			var subFilVal = d3.select("#"+subSelVal+"FilSel").node().value;
 			if(subFilVal != 'all'){
-				filterShow('state',subFilVal);
+				filterShow('state',subFilVal, dtVal);
 			}else{
 				infoTable.selectAll('tr').classed('hide',false);
 			}
 		}else if( subSelVal == 'country'){
 			var subFilVal = d3.select("#"+subSelVal+"FilSel").node().value;
 			if(subFilVal != 'all'){
-				filterShow('country',subFilVal);
+				filterShow('country',subFilVal, dtVal);
 			}else{
 				infoTable.selectAll('tr').classed('hide',false);
 			}
 		}else if( subSelVal == 'shape'){
 			var subFilVal = d3.select("#"+subSelVal+"FilSel").node().value;
 			if(subFilVal != 'all'){
-				filterShow('shape',subFilVal);
+				filterShow('shape',subFilVal, dtVal);
 			}else{
 				infoTable.selectAll('tr').classed('hide',false);
 			}
 		}
-		console.log(subFilVal);
 	}
 	
 }
